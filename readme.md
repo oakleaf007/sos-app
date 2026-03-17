@@ -9,6 +9,7 @@ This is  the backend service for the app called **Helping Hand**.
 The backend provides API for:
 
 - user authentication
+- nearby important place searching API (e.g. Police station, hospital etc.)
 
 ## Tech stack
 
@@ -32,7 +33,7 @@ The backend provides API for:
 
 ## Env Variables
   ```
- PORT - describe the port where the server will rune
+ PORT - describe the port where the server will run
  MONGO_URI - describe the Mongo connection string here
 ```
 
