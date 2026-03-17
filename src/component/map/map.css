@@ -1,0 +1,50 @@
+.custom-marker{
+background: transparent;
+}
+.mark{
+    width: 15px;
+    height: 15px;
+
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: rgb(80, 186, 231);
+}
+
+.police{
+       width: 15px;
+    height: 15px;
+
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: navy;
+}
+.hospital{
+     width: 15px;
+    height: 15px;
+
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: green;
+}
+
+.fuel{
+     width: 15px;
+    height: 15px;
+
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: yellow;
+}
+.fire{
+     width: 15px;
+    height: 15px;
+
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: orange;
+}
+
+#map{
+    position: relative;
+
+}
