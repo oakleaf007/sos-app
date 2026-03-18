@@ -4,7 +4,7 @@ export const nearbyFetch = async(req, res)=>{
     const {query, lat, lon} = req.query;
     
     try{
-        if(!lat || !lon || !query) return res.json({message: "No lat, lon recieved"});
+        if(!lat || !lon || !query) return res.json({message: "No query params or lat, lon recieved"});
         
         const latNum = parseFloat(lat);
         const lonNum = parseFloat(lon);
@@ -12,12 +12,12 @@ export const nearbyFetch = async(req, res)=>{
             headers:{"User-Agent": "sos-beacon"}
         });
         const data = await response.json();
-         console.log(data);
+        //  console.log(data);
        return  res.status(200).json(data);
        
 
 
     }catch(error){
-        res.status(500).json({error: "Geofetching failed"+ error.message})
+        res.status(500).json({error: "Geofetching failed/cors policy violation/Too much requests"+ error.message})
     }
 }
