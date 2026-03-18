@@ -33,7 +33,7 @@ export default function SignUp({ onSwitch }) {
         if(res?.success){
             setStatus(res?.message);  
             setTimeout(()=>{
-                navigate("/")
+                navigate("/signin")
 
             },2000);      
          

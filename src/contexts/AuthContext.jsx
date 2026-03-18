@@ -10,7 +10,7 @@ export default function AuthProvider({children}){
   
     
     function login(token){
-        localStorage.setItem("token",sostoken);
+        localStorage.setItem("sostoken",token);
         setLogin(true);
   
     }

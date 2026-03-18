@@ -1,20 +1,47 @@
 import { useState } from "react";
 import "./sign.css";
 import { Link } from "react-router-dom";
+import { signin } from "../../services/AuthServices";
+
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 export default function Signin() {
   const [form, setForm] = useState({
-    name: "",
+    
     email: "",
     password: ""
   });
-
+  const {login} = useContext(AuthContext);
+  const [status, setStatus] = useState("");
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("Sign Up Data:", form);
+    console.log("Sign in Data:", form);
+
+    try{
+      const res = await signin(form);
+     
+
+      if(res.success){
+        login(res);
+
+        setStatus(res.message+ "redirecting...")
+        setTimeout(()=>{
+          navigate("/");
+        },2000);
+      }
+
+    }catch(err){
+      setStatus(err.message);
+      console.error(err.message);
+    }
+
+
   };
 
   return (
@@ -42,7 +69,7 @@ export default function Signin() {
           onChange={handleChange}
           required
         />
-
+    <p>{status}</p>
         <button type="submit">Sign in</button>
       </form>
 

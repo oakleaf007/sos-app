@@ -12,7 +12,7 @@ export function LocationProvider({ children }) {
     const nearByUrl =`http://localhost:4000/api/v1/nearbyfetch`;
 
     const [location, setLocation] = useState(null);
-    const [ipLocation, setIpLocation] = useState(null);
+    // const [ipLocation, setIpLocation] = useState(null);
     const [locationStatus, setLocationStatus] = useState("");
     const [nearby, setNearby] = useState({
         hospitals: [],
