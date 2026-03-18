@@ -2,12 +2,21 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import { BrowserRouter } from "react-router-dom";
 import { LocationProvider } from './contexts/LocationContext.jsx'
+import AuthProvider from './contexts/AuthContext.jsx';
+
+
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <LocationProvider>
-   <App />
-    </LocationProvider>
+    <AuthProvider>
    
-  </StrictMode>,
+      <BrowserRouter>
+      <App />
+      </BrowserRouter>
+   
+   
+   </AuthProvider>
+  </StrictMode>
 )

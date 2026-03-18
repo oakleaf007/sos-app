@@ -12,6 +12,7 @@ export function LocationProvider({ children }) {
     const nearByUrl =`http://localhost:4000/api/v1/nearbyfetch`;
 
     const [location, setLocation] = useState(null);
+    const [ipLocation, setIpLocation] = useState(null);
     const [locationStatus, setLocationStatus] = useState("");
     const [nearby, setNearby] = useState({
         hospitals: [],
@@ -65,13 +66,13 @@ export function LocationProvider({ children }) {
 
 
         }
-       
+   
 
         async function getGpsLocation() {
             if (watchId) return;
 
             if (!navigator.geolocation) {
-                ;
+                
                 setLocationStatus("not supported");
                 return;
             }
@@ -161,7 +162,8 @@ export function LocationProvider({ children }) {
                 return;
             }
             try {
-
+                
+               
                 await getGpsLocation();
 
             } catch (err) {

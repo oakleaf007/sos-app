@@ -23,8 +23,7 @@ export default function Map() {
 
     useEffect(() => {
         if (mapref.current) return;
-
-
+        
         const map = L.map(mapContainer.current).setView([0, 0], 1);
         mapref.current = map;
 
@@ -32,6 +31,10 @@ export default function Map() {
         L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
             attribution: "@OpenStreetMap &copyCartoDB"
         }).addTo(map);
+
+          
+
+
 
     }, []);
 
@@ -43,9 +46,8 @@ useEffect(()=>{
                 console.log(location);
                 const map =mapref.current;
                 
-            if(isFirstLoad.current){
-                map.setView([location.lat, location.lon],18);
-                isFirstLoad.current=false;
+          
+              
 
                  if(!useMarker.current){
                        useMarker.current=  L.marker([location.lat, location.lon], {
@@ -53,14 +55,21 @@ useEffect(()=>{
                     className: "custom-marker",
                     html: "<div class='mark'></div>"
                 })
-            }).addTo(mapref.current).bindPopup("You are here").openPopup()
+            }).addTo(mapref.current).bindPopup("You are here");
                 }else{
                     useMarker.current.setLatLng([location.lat, location.lon])
                 }
-            }
+            
+
+             if(isFirstLoad.current){
+                  map.setView([location.lat, location.lon],18);
+                isFirstLoad.current=false;
+             }
                
 
 },[location]);
+
+
 useEffect(()=>{
     if(mapref.current && !nearbyLayerRef.current){
         nearbyLayerRef.current= L.layerGroup().addTo(mapref.current);
