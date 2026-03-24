@@ -7,8 +7,18 @@ const userSchema = new mongoose.Schema({
     password:{type: String, required: true},
     role:{ type: String, enum: ["user", "volunteer"], default:"user"},
     location:{
-        lat:Number, lon: Number
+        type:{
+            type: String,
+            enum : ["Point"],
+            default: "Point"
+        },
+        coordinates:{
+            type:[Number],
+            default: [0,0]
+        }
+      
     },
+    lastActive: Date,
     isActive:{
         type:Boolean,
         default:false
@@ -16,4 +26,5 @@ const userSchema = new mongoose.Schema({
    
 },{timestamps:true});
 
+userSchema.index({location : "2dsphere"});
 export default mongoose.model("User", userSchema);

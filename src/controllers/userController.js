@@ -27,3 +27,23 @@ export const signUp = async (req,res)=>{
 
     }
 }
+export const signin = async(req,res)=>{
+    const {email, password} = req.body;
+
+    if(!email || !password){
+        return res.status(204).json({message: "empty body recieved"});
+    }
+
+    const user = await User.findOne({email});
+    if(!user) return res.status(404).json({message: "user not found!"});
+
+    const match = await bcrypt.compare(password, user.password);
+
+    if(!match) return res.json({message:"invalid credential"});
+
+    res.status(200).json({success: true, messager: "login successfull", user:{
+        id: user._id,
+        name:user.name
+    }});
+
+}
